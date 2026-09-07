@@ -19,7 +19,7 @@ function Registration() {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/auth/register", data).then(() => {
+    axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, data).then(() => {
       console.log(data);
     });
   };

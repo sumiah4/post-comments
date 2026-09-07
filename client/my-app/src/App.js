@@ -15,7 +15,7 @@ function App() {
   //let navigate = useNavigate();
   useEffect(() => {
     if(localStorage.getItem('accessToken')) {
-    axios.get('http://localhost:5000/auth/verify', {
+    axios.get(`${process.env.REACT_APP_API_URL}/auth/verify`, {
       headers: { accessToken: localStorage.getItem('accessToken') }
     }).then((res) => {
       if (res.data.error) {

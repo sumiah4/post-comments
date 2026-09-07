@@ -8,14 +8,14 @@ function ListPost() {
   const [postList, setPostList] = useState([]);
   let navigate = useNavigate();
   useEffect(() => {
-    axios.get('http://localhost:5000/').then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}`).then((res) => {
       console.log(res.data)
         setPostList(res.data);
     })
   }, [])
 
   const likeAPost = (postId) => {
-    axios.post('http://localhost:5000/likes', {postId: postId}, {
+    axios.post(`${process.env.REACT_APP_API_URL}/likes`, {postId: postId}, {
       headers:{accessToken : localStorage.getItem('accessToken')}
     }).then((response) => {
       setPostList(postList.map((post) => {

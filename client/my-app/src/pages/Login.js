@@ -13,7 +13,7 @@ export default function Login() {
 
   const login = () => {
     const data = { username, password }
-    axios.post('http://localhost:5000/auth/login', data).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, data).then((res) => {
       console.log(res)
       if (res.data.error){
          setLoginInvalid(res.data.error);

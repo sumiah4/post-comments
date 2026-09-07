@@ -13,10 +13,10 @@ function ViewPost() {
 
     const {authUser} = useContext(AuthContext);
     useEffect(() => {
-        axios.get(`http://localhost:5000/viewpost/${id}`).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/viewpost/${id}`).then((res) => {
           setUserPost(res.data);
         })
-        axios.get(`http://localhost:5000/comments/${id}`).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/comments/${id}`).then((res) => {
           console.log(res)
           setComments(res.data);
         })
@@ -24,7 +24,7 @@ function ViewPost() {
     
     const addComment = () => {
       const newData = {"postId": id, "commentText": newComment, "userId":authUser.id};
-      axios.post('http://localhost:5000/comments', newData, {
+      axios.post(`${process.env.REACT_APP_API_URL}/comments`, newData, {
         headers: {accessToken : localStorage.getItem('accessToken')}
       }).then((res) => {
         console.log(res.data);
@@ -39,7 +39,7 @@ function ViewPost() {
     }
 
     const deleteComment = (commentId) => {
-      axios.delete(`http://localhost:5000/comments/${commentId}`, {
+      axios.delete(`${process.env.REACT_APP_API_URL}/comments/${commentId}`, {
         headers: {accessToken : localStorage.getItem('accessToken')}
       }).then ((res) => {
         const newComments = comments.filter((comment) => comment.id !== commentId)
