@@ -16,7 +16,7 @@ function AddPost() {
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.post('http://localhost:5000/', data).then((res) => {
+        axios.post(`${process.env.REACT_APP_API_URL}`, data).then((res) => {
             if (res.status === 200) {
                 navigate('/');            }
         })
